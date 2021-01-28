@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="../static/css/style.css">
+	<script src="https://kit.fontawesome.com/8416825384.js" crossorigin="anonymous"></script>
+	<link href="https://fonts.googleapis.com/css?family=Raleway:200,300,400,700|Source+Sans+Pro:300,400,600" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">	
+	<title>Ślusarczyk płytki</title>
+</head>
+<body>
+	<div class="mainWrapper">
+		<div class="leftPage">
+			<nav>
+				<div class="menu">
+					<a class="logo-a" href="#">
+						<div class="logo">LOGO</div>
+					</a>
+					<a class="contact" href="#">
+						<div class="link">
+							Kontakt
+						</div>
+					</a>
+				</div>
+			</nav>
+			<div class="contentLeft">
+				<div class="h1">
+					<h1>Tomasz Ślusarczyk</h1>
+				</div>
+				<div class="h2">
+					<h2>Łazienki · Kuchnie · Płytki. Spełniam marzenia o pięknym wnętrzu.</h2>
+				</div>
+				<div class="span">
+					<span></span>
+				</div>
+				<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit, dolor sapiente. Tempora dicta deleniti culpa illum eveniet optio animi mollitia eos, numquam minus quas porro laboriosam dolorem totam necessitatibus quae. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nemo, aspernatur! Quae sapiente dolorum animi ad inventore et, alias blanditiis eos repellendus corporis. Nemo nisi nobis dicta quia. Nobis, iusto error.</p>
+			</div>
+		</div>
+		<div class="rightPage">
+			<a href="#">
+				<button class="galery">Zobacz galerię<i class="fas fa-long-arrow-alt-right"></i></button>
+			</a>
+		</div>
+
+		<!-- __________________________________ -->
+
+		<div class="slideLeft">
+			<nav>
+				<div class="menu">
+					<a class="logo-b" href="#">
+						<div class="logo">LOGO</div>
+					</a>
+					<a class="mainPage" href="#">
+						<div class="link">
+							Strona główna
+						</div>
+					</a>
+				</div>
+			</nav>
+			<div class="contentLeft">
+				<div class="h1">
+					<h1>Skontaktuj się ze mną</h1>
+				</div>
+				<div class="h2">
+					<h2>Skorzystaj z formularza lub zadzwoń na numer 666 666 666</h2>
+				</div>
+				<div class="span">
+					<span></span>
+				</div>
+				<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit, dolor sapiente. Tempora dicta deleniti culpa illum eveniet optio animi mollitia eos, numquam minus quas porro laboriosam dolorem totam necessitatibus quae. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nemo, aspernatur! Quae sapiente dolorum animi ad inventore et, alias blanditiis eos repellendus corporis. Nemo nisi nobis dicta quia. Nobis, iusto error.</p>
+			</div>
+		</div>
+	</div>
+	<script>
+		const contactButton = document.querySelector('a.contact');
+		const mainPageButton = document.querySelector('a.mainPage');
+		const slider = document.querySelector('.slideLeft');
+		const logo = document.querySelector('a.logo-b');
+
+		const toggleActiveClass = () => {
+			mainPageButton.classList.toggle('active');
+			slider.classList.toggle('active');
+			logo.classList.toggle('active');
+		};
+
+		contactButton.onclick = toggleActiveClass;
+		mainPageButton.onclick = toggleActiveClass;
+	</script>
+	
+</body>
+</html>
