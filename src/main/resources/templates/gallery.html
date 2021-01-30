@@ -8,7 +8,7 @@
         <title>Document</title>
 
         <!-- Styles -->
-        <link rel="stylesheet" href="gallery.css">
+        <link rel="stylesheet" href="../static/css/gallery.css">
         <link href="https://fonts.googleapis.com/css?family=Raleway:200,300,400,700|Source+Sans+Pro:300,400,600" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
         <!-- Styles /End -->
@@ -22,7 +22,9 @@
         <!-- ___________MICHAŁ____________ -->
 
         <!-- For photoSource in Photos -->
-            <div><img src="photoSource" alt=""></div>
+            <div th:each="imagePath : ${imagesPaths}">
+                <img th:src="@{${imagePath}}" th:alt="${imagePath.fileName}">
+            </div>
 
         <!-- ___________MICHAŁ____________ -->
         
