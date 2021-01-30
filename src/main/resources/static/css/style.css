@@ -1,0 +1,183 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-family: Raleway, sans-serif;
+  font-weight: 400;
+}
+
+.mainWrapper {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  background-color: rgb(28, 27, 27);
+  position: relative;
+}
+
+.leftPage {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: white;
+  flex-basis: 58%;
+  max-width: 58%;
+  height: 100vh;
+}
+
+.slideLeft {
+  display: flex;
+  position: absolute;
+  flex-direction: column;
+  justify-content: space-between;
+  transform: translateX(-100%);
+  top: 0;
+  flex-basis: 58%;
+  max-width: 58%;
+  height: 100vh;
+  background-color: #1c1b1b;
+
+}
+
+.leftPage nav {
+  height: 64px;
+  position: relative;
+  width: 100%;
+}
+
+.menu {
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  width: 100%;
+  right: 0;
+  padding: 50px;
+}
+
+.link {
+  width: 100%;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 700;
+  /* opacity: 0; */
+  letter-spacing: 1.4px;
+  text-align: end;
+}
+
+a {
+  text-decoration: none;
+  color: rgb(45, 52, 59);
+}
+
+.contentLeft {
+  display: flex;
+  flex-basis: 70%;
+  max-height: 70%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-left: 120px;
+  padding-right: 120px;
+}
+
+.h1 {
+  padding: 15px 0;
+  width: 100%;
+}
+
+.h1 h1 {
+  overflow: hidden;
+  /* transform: translatey(-100px); */
+  font-family: Raleway,sans-serif;
+  font-weight: 700;
+  font-size: 2.827em;
+  /* padding: 0 120px; */
+  /* position: relative; */
+  margin: 0 0 .5em;
+  display: inline-block;
+  text-transform: uppercase;
+  text-align: start;
+}
+
+.h2 h2 {
+  /* transform: translatey(-100px); */
+  font-family: "Source Sans Pro",sans-serif;
+  font-weight: 700;
+  font-size: 1em;
+  /* padding: 0 120px; */
+}
+
+.h2 {
+  padding: 20px 0;
+  width: 100%;
+}
+
+.span span {
+  /* opacity: 0; */
+  height: 8px;
+  width: 8px;
+  background: #333;
+  display: block;
+  margin-top: 2.2em;
+}
+
+.span {
+  width: 100%;
+}
+
+p {
+  display: block;
+}
+.contentLeft p {
+  margin: 2.2em 0;
+  width: 100%;
+}
+
+
+.rightPage {
+  position: relative;
+  flex-basis: 42%;
+  height: 100%;
+  background-image: url('images/lazienka1.jpeg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.galery {
+  position: absolute;
+  display: block;
+  border: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #fff;
+  color: black;
+  padding: 36px 64px;
+  font-size: 12px;
+  text-transform: uppercase;
+  font-weight: 700;
+
+  letter-spacing: 1.4px;
+}
+
+.fa-long-arrow-alt-right {
+  font-size: 12px;
+  padding-left: 16px;
+}
+
+.active {
+  color: #fff;
+}
+
+.slideLeft.active {
+  transform: translateX(0);
+}
+div.active span {
+  background-color: #fff;
+}
+
+a.active {
+  color: #fff;
+}
