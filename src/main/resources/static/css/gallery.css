@@ -1,1 +1,141 @@
 
+@import url(https://fonts.googleapis.com/css?family=Montserrat:500);
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    font-size: 10px;
+    --img-size-w: 45%;
+    --img-size-h: 15vh;
+    --header-h-1: 36px;
+    --bgc: #fafafa;
+    --font-c: #1a1a1a;
+}
+
+html {
+    font-family: Raleway, sans-serif;
+    font-weight: 400;
+    color: var(--font-c);
+}
+
+body {
+
+	min-height: 100vh;
+    background-color: var(--bgc);
+}
+
+div.item {
+    flex: 1 0 24rem;
+    /* width: var(--img-size-w);
+    height: var(--img-size-h); */
+    overflow: hidden;
+    margin: 1rem;
+    box-shadow: 0.3rem 0.4rem 0.4rem rgba(0, 0, 0, 0.4);
+}
+
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 100rem;
+	padding: 0 2rem 2rem;
+    margin: -1rem -1rem;
+    /* width: 80%; */
+}
+
+.container {
+	max-width: 100rem;
+	margin: 0 auto;
+	padding: 0 2rem 2rem;
+}
+
+.img {
+    display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	transition: transform 400ms ease-out;
+}
+
+.img:hover {
+	transform: scale(1.15);
+}
+
+header {
+    /* display: block; */
+    /* background-color: #ddd; */
+    height: var(--header-h-1);
+    line-height: var(--header-h-1);
+    /* margin-bottom: 30px; */
+}
+
+div.mainPage {
+    text-align: center;
+    font-size: 1.3rem;
+}
+
+header a {
+    text-decoration: none;
+    color: var(--font-c);
+    text-transform: uppercase;
+
+}
+
+h1 {
+    font-family: "Montserrat", Arial, sans-serif;
+    font-size: 4rem;
+	font-weight: 500;
+	line-height: 1.5;
+	text-align: center;
+	padding: 3.5rem 0;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+}
+
+footer h2::after {
+    content: '';
+    margin: 0 auto 5px;
+    display: block;
+    width: 80%;
+    border-top: 1px solid var(--font-c);
+}
+
+.fas {
+    padding-right: 10px;
+}
+
+/* 
+ X-Small devices (portrait phones, less than 576px)
+ No media query for `xs` since this is the default in Bootstrap */
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) {
+
+}
+
+ /* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+
+}
+
+ /* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+
+}
+
+ /* X-Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+
+}
+
+ /* XX-Large devices (larger desktops, 1400px and up) */
+@media (min-width: 1400px) {
+
+}
