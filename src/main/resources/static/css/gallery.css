@@ -12,6 +12,7 @@
     --img-size-w: 45%;
     --img-size-h: 15vh;
     --header-h-1: 36px;
+    --header-h-2: 48px;
     --bgc: #fafafa;
     --font-c: #1a1a1a;
 }
@@ -103,7 +104,7 @@ footer h2::after {
     content: '';
     margin: 0 auto 5px;
     display: block;
-    width: 80%;
+    width: 200px;
     border-top: 1px solid var(--font-c);
 }
 
@@ -111,28 +112,82 @@ footer h2::after {
     padding-right: 10px;
 }
 
+p {
+    font-size: 12px;
+}
 /* 
  X-Small devices (portrait phones, less than 576px)
  No media query for `xs` since this is the default in Bootstrap */
 
 /* Small devices (landscape phones, 576px and up) */
 @media (min-width: 576px) {
+    p {
+        font-size: 1.4em;
+    }
 
+    h2 {
+        font-size: 1.8em;
+    }
 }
 
  /* Medium devices (tablets, 768px and up) */
 @media (min-width: 768px) {
+    div.mainPage {
+        font-size: 1.5rem;
+    }
 
+    header {
+        height: var(--header-h-2);
+        line-height: var(--header-h-2);
+    }
+
+    p {
+        font-size: 1.6em;
+    }
+
+    h2 {
+        font-size: 2em;
+    }
+
+    footer h2::after {
+        width: 250px;
+    }
 }
 
  /* Large devices (desktops, 992px and up) */
 @media (min-width: 992px) {
+h1 {
+    font-size: 5rem;
+}
 
+div.mainPage {
+    font-size: 1.8rem;
+}
+
+header {
+    height: var(--header-h-2);
+    line-height: var(--header-h-2);
+}
+
+p {
+    font-size: 1.8em;
+}
+
+h2 {
+    font-size: 2.2em;
+}
+
+footer h2::after {
+    width: 300px;
+}
 }
 
  /* X-Large devices (large desktops, 1200px and up) */
 @media (min-width: 1200px) {
 
+    footer {
+        padding: 30px;    
+    }
 }
 
  /* XX-Large devices (larger desktops, 1400px and up) */
