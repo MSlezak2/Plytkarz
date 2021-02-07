@@ -1,6 +1,13 @@
 package pl.dmms.plytkarz;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.MailException;
+import org.springframework.mail.MailSender;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessagePreparator;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -21,6 +28,9 @@ public class PlytkarzController {
      */
     public static final String IMAGES_PATH_STATIC = "css\\images\\";
     
+    @Autowired
+    private MailSender mailSender;
+    
     @GetMapping("/gallery")
     public ModelAndView getGallery(){
         ModelAndView modelAndView = new ModelAndView("gallery");
@@ -37,5 +47,27 @@ public class PlytkarzController {
         
         return modelAndView;
     }
+    
+    @GetMapping("/email")
+    public boolean sendEmail(){
+        boolean success = false;
+    
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setTo("mkowaldwa@gmail.com");
+        message.setText("Sample text");
+        message.setFrom("mkowaldwa@gmail.com");
+        message.setSubject("Plytkarz - test 1");
+        try {
+            mailSender.send(message);
+            success = true;
+        } catch (MailException me) {
+            System.out.println(me.getMessage());
+        }
+        
+        //TODO: Exception handling (e.g. subclasses of org.springframework.mail.MailException)
+        //TODO: Prevent situations like spamming somehow
+        return success;
+    }
+    
     
 }
