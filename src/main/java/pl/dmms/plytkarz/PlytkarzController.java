@@ -6,9 +6,8 @@ import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessagePreparator;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.io.File;
@@ -48,15 +47,25 @@ public class PlytkarzController {
         return modelAndView;
     }
     
-    @GetMapping("/email")
-    public boolean sendEmail(){
+    @GetMapping("/")
+    public ModelAndView getIndex(){
+        ModelAndView modelAndView = new ModelAndView("index");
+        modelAndView.addObject("mail",new Mail());
+        
+        return modelAndView;
+    }
+    
+    
+    @PostMapping("/email")
+    public boolean sendEmail(@ModelAttribute Mail mail){
+//        model.addAttribute("mail",mail);
         boolean success = false;
     
         SimpleMailMessage message = new SimpleMailMessage();
-        message.setTo("mkowaldwa@gmail.com");
-        message.setText("Sample text");
-        message.setFrom("mkowaldwa@gmail.com");
-        message.setSubject("Plytkarz - test 1");
+        message.setTo(mail.getRecipient());
+        message.setText(mail.getMessageText());
+        message.setFrom(mail.getSender());
+        message.setSubject(mail.getSubject());
         try {
             mailSender.send(message);
             success = true;
