@@ -68,18 +68,21 @@
 				<div class="span">
 					<span></span>
 				</div>
-				<form th:action="@{/email}" th:object="${mail}" method="post">
+				<form th:action="@{/}" th:object="${mail}" method="post">
 					<div class="mb-3">
 						<label for="exampleFormControlInput1" class="form-label">Adres email</label>
 						<input type="email" th:field="*{sender}" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+						<label th:if="${#fields.hasErrors('sender')}" th:errors="*{sender}" for="exampleFormControlInput1" class="form-label">Nieprawidłowy adres</label>
 					</div>
 					<div class="mb-3">
 						<label for="exampleFormControlInput2" class="form-label">Temat</label>
 						<input type="text" th:field="*{subject}" class="form-control" id="exampleFormControlInput2" placeholder="Temat wiadomości">
+						<p th:if="${#fields.hasErrors('subject')}" th:errors="*{subject}" for="exampleFormControlInput1" class="form-label">Uzupełnij temat</p>
 					</div>
 					<div class="mb-3">
 						<label for="exampleFormControlTextarea1" class="form-label">Treść wiadomości</label>
 						<textarea class="form-control" th:field="*{messageText}" id="exampleFormControlTextarea1" rows="3"></textarea>
+						<p th:if="${#fields.hasErrors('messageText')}" th:errors="*{messageText}" for="exampleFormControlTextarea1" class="form-label">Uzupełnij treść ;)</p>
 					</div>
 					<div class="mb-3">
 						<button name="btn" class="btn">Wyślij</button>

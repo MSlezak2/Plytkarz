@@ -4,16 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailException;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.MimeMessagePreparator;
-import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.validation.Valid;
 import java.io.File;
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.List;
 
 @RestController
 public class PlytkarzController {
@@ -56,26 +53,27 @@ public class PlytkarzController {
     }
     
     
-    @PostMapping("/email")
-    public boolean sendEmail(@ModelAttribute Mail mail){
-//        model.addAttribute("mail",mail);
-        boolean success = false;
+    @PostMapping("/")
+    public ModelAndView sendEmail(@ModelAttribute @Valid Mail mail, BindingResult bindingResult){
+        // TODO: Do something for page to stay in the same place (contact form) after submitting
+        ModelAndView modelAndView = new ModelAndView("index");
     
-        SimpleMailMessage message = new SimpleMailMessage();
-        message.setTo(mail.getRecipient());
-        message.setText(mail.getMessageText());
-        message.setFrom(mail.getSender());
-        message.setSubject(mail.getSubject());
-        try {
-            mailSender.send(message);
-            success = true;
-        } catch (MailException me) {
-            System.out.println(me.getMessage());
+        if (!bindingResult.hasErrors()) {
+            SimpleMailMessage message = new SimpleMailMessage();
+            message.setTo(mail.getRecipient());
+            message.setText(mail.getMessageText());
+            message.setFrom(mail.getSender());
+            message.setSubject(mail.getSubject());
+            try {
+                mailSender.send(message);
+            } catch (MailException me) {
+                System.out.println(me.getMessage());
+            }
         }
         
         //TODO: Exception handling (e.g. subclasses of org.springframework.mail.MailException)
         //TODO: Prevent situations like spamming somehow
-        return success;
+        return modelAndView;
     }
     
     
