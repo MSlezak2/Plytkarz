@@ -1,16 +1,28 @@
 package pl.dmms.plytkarz;
 
+import com.fasterxml.jackson.databind.util.JSONPObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.*;
 import org.springframework.mail.MailException;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
+import org.springframework.web.reactive.function.client.ClientResponse;
+import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.util.UriBuilder;
+import reactor.core.publisher.Mono;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.io.File;
+import java.net.URI;
 import java.nio.file.Path;
+import java.util.HashMap;
+
+//TODO: To make possible running the app on the localhost without configuration data like email password or reCAPTCHA keys
 
 @RestController
 public class PlytkarzController {
@@ -26,6 +38,8 @@ public class PlytkarzController {
     
     @Autowired
     private MailSender mailSender;
+    @Autowired
+    private ReCaptchaProperties reCaptchaProperties;
     
     @GetMapping("/gallery")
     public ModelAndView getGallery(){
@@ -54,11 +68,25 @@ public class PlytkarzController {
     
     
     @PostMapping("/")
-    public ModelAndView sendEmail(@ModelAttribute @Valid Mail mail, BindingResult bindingResult){
+    public ModelAndView sendEmail(@ModelAttribute @Valid Mail mail, BindingResult bindingResult, HttpServletRequest gRequest){
         // TODO: Do something for page to stay in the same place (contact form) after submitting
         ModelAndView modelAndView = new ModelAndView("index");
+        
+        //reCAPTCHA (//TODO: Maybe extract that into separate class?
+        String responseToken = gRequest.getParameter("g-recaptcha-response");
     
-        if (!bindingResult.hasErrors()) {
+        RestTemplate restTemplate = new RestTemplate();
+        //TODO: Send data as a body instead of in URL
+        String url = reCaptchaProperties.getUrl()+"?secret="+reCaptchaProperties.getSecretkey()+"&response="+responseToken;
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity httpEntity = new HttpEntity(httpHeaders);
+        
+        ResponseEntity<ReCaptchaResponse> templateExchange = restTemplate.exchange(url, HttpMethod.POST, httpEntity, ReCaptchaResponse.class);
+        ReCaptchaResponse reCaptchaResponse = templateExchange.getBody();
+        
+        
+        if (!bindingResult.hasErrors() && reCaptchaResponse.isSuccess()) {
             SimpleMailMessage message = new SimpleMailMessage();
             message.setTo(mail.getRecipient());
             message.setText(mail.getMessageText());
@@ -66,6 +94,7 @@ public class PlytkarzController {
             message.setSubject(mail.getSubject());
             try {
                 mailSender.send(message);
+                //TODO: Maybe some dialog about successful delivery?
             } catch (MailException me) {
                 System.out.println(me.getMessage());
             }

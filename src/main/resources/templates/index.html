@@ -5,6 +5,14 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" th:href="@{css/style.css}">
 	<script src="https://kit.fontawesome.com/8416825384.js" crossorigin="anonymous"></script>
+<!--	reCAPTCHA	-->
+	<script src='https://www.google.com/recaptcha/api.js'></script>
+	<script>
+		function onSubmit(token) {
+			document.getElementById("contactform").submit();
+		}
+	</script>
+<!--	/reCAPTCHA	-->
 	<link href="https://fonts.googleapis.com/css?family=Raleway:200,300,400,700|Source+Sans+Pro:300,400,600" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">	
 	<title>Ślusarczyk płytki</title>
@@ -68,7 +76,7 @@
 				<div class="span">
 					<span></span>
 				</div>
-				<form th:action="@{/}" th:object="${mail}" method="post">
+				<form id="contactform" th:action="@{/}" th:object="${mail}" method="post">
 					<div class="mb-3">
 						<label for="exampleFormControlInput1" class="form-label">Adres email</label>
 						<input type="email" th:field="*{sender}" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
@@ -85,7 +93,7 @@
 						<p th:if="${#fields.hasErrors('messageText')}" th:errors="*{messageText}" for="exampleFormControlTextarea1" class="form-label">Uzupełnij treść ;)</p>
 					</div>
 					<div class="mb-3">
-						<button name="btn" class="btn">Wyślij</button>
+						<button name="btn" class="g-recaptcha" data-sitekey="6LfEZV0aAAAAAFezaoisO6oej-iQ_-pQVDHs68h8" data-callback='onSubmit' data-action='submit'>Wyślij</button>
 					</div>
 
 				</form>
