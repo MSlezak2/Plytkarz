@@ -93,7 +93,7 @@
 						<p th:if="${#fields.hasErrors('messageText')}" th:errors="*{messageText}" for="exampleFormControlTextarea1" class="form-label">Uzupełnij treść ;)</p>
 					</div>
 					<div class="mb-3">
-						<button name="btn" class="g-recaptcha" data-sitekey="6LfEZV0aAAAAAFezaoisO6oej-iQ_-pQVDHs68h8" data-callback='onSubmit' data-action='submit'>Wyślij</button>
+						<button name="btn" class="btn g-recaptcha" data-sitekey="6LfEZV0aAAAAAFezaoisO6oej-iQ_-pQVDHs68h8" data-callback='onSubmit' data-action='submit'>Wyślij</button>
 					</div>
 
 				</form>
@@ -116,6 +116,9 @@
 
 		contactButton.onclick = toggleActiveClass;
 		mainPageButton.onclick = toggleActiveClass;
+
+		// const captchaBtn = document.querySelector('.grecaptcha-badge');
+		// captchaBtn.style.transform('translateX: 42vw');
 	</script>
 	
 	

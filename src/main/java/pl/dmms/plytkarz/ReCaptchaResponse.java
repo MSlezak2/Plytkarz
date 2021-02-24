@@ -1,7 +1,6 @@
 package pl.dmms.plytkarz;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.cef.handler.CefLoadHandler;
 
 import java.sql.Timestamp;
 
